@@ -22,7 +22,7 @@
 			.header .logo { float:left;}
 			.header a {underline:none;text-decoration:none;}
 			.header .down-text { color:#fff;underline:none; text-decoration:none; float:left; margin-top:10px; font-size:13px;}
-			.question_list li {border-bottom:1px solid #ccc;width:100%; padding:5px 10px; font-size:14px; max-width:550px;}
+			.question_list li {border-bottom:1px solid #ccc; padding:5px 10px; font-size:14px; }
 			.question_list li .content { float:left; margin-left:10px; word-break:break-word; word-wrap:break-word;}
 			.question_list li .avatar {width:40px;height:40px; float:left; padding:1px; border:1px solid #ccc;}
 			.question_list li .avatar img {width:40px;height:40px;}
@@ -36,7 +36,7 @@
 	<div class="wrap">
 		<div class="header">
 			<a href="https://itunes.apple.com/cn/artist/quan-xin/id485600101?l=en">
-				<img src="/images/logo.png" class="logo" />
+				<div class="logo"><img src="/images/logo.png" /></div>
 				<span class="down-text">下载ASK DAD客户端，发布自己的问题</span>
 			</a>
 		</div>

@@ -50,6 +50,7 @@ class QuestionController extends Controller
 		if(empty($question_id) || $question_id <= 0) {
 			$this->ajax_response(404,'参数不正确');
 		}
+
 		$question_db = Question::model()->findByPk($question_id);
 		if(empty($question_db)) {
 			$this->ajax_response(404,'参数不正确');

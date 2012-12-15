@@ -41,11 +41,21 @@ class AnswerController extends Controller
 				$this->_data['user_name'] = $user_db['user_name'];
 				$this->_data['user_avatar'] = $user_db['avatar'];
 			}
+			$this->_update_answer_count($data['question_id']);
 			$this->ajax_response(200,'',$this->_data);
 		} else {
 			//var_dump($new_answer->getErrors());
 			$this->ajax_response(500,'插入失败');
 		}
+	}
+
+	private function _update_answer_count($question_id)
+	{
+		$criteria = new CDbCriteria;
+		$criteria->addCondition("status=0");
+		$criteria->addCondition("question_id=$question_id");
+		$count = Answer::model()->count($criteria);
+		Question::model()->updateByPk($question_id, array('answer_count'=> $count));
 	}
 
 	// Uncomment the following methods and override them if needed
