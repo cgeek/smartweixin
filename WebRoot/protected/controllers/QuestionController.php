@@ -96,7 +96,7 @@ class QuestionController extends Controller
 		$lon = $_GET['lon'];
 		$distance = isset($_GET['distance']) ? $_GET['distance'] : 2;
 		if(!empty($lat) && $lat > 0 && !empty($lon) && $lon > 0) {
-			//$squares = $this->_returnSquarePoint($lat, $lon, $distance);
+			$squares = $this->_returnSquarePoint($lat, $lon, $distance);
 		}
 		$p = isset($_GET['page'])  ? intval($_GET['page']) : 1;
 		$per_page = 100;
@@ -133,8 +133,14 @@ class QuestionController extends Controller
 	{
 		$user = User::model()->findByPk($question_db['user_id']);
 		if($lat > 0 && $lon > 0 && $question_db['lat'] > 0 && $question_db['lon'] > 0) {
-			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']) * 1000;
-			$distance = intval($distance) . "米";
+			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']);
+			if($distance <= 0) {
+				$distance = '';	
+			} else if($distance < 1000) {
+				$distance = intval($distance * 1000) . "米";
+			} else {
+				$distance = round($distance, 2) . "千米";
+			}
 		} else {
 			$distance = '';
 		}

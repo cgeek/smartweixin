@@ -27,7 +27,7 @@
 			.question_list li .content { float:left; margin-left:10px; word-break:break-word; word-wrap:break-word; color:#555; width:240px;}
 			.question_list li .avatar {width:40px;height:40px; float:left; padding:1px; border:1px solid #ccc;}
 			.question_list li .avatar img {width:40px;height:40px;}
-			.question_list li .user_name {color:#999;}
+			.question_list li .user_name {color:#999; line-height:15px;}
 			.question_list li span.time {color:#ccc; font-size:12px;}
 			.question_list li span.count { color:#0381F6; font-size:12px; margin-left:10px;}
 
