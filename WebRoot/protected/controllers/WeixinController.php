@@ -2,11 +2,11 @@
 
 class WeixinController extends Controller
 {
-	public function actionValid()
+	public function actionIndex()
 	{
-		$this->render('valid');
-	}
+		echo 'test';
 
+	}
 	public function actionValid()
     {
         $echoStr = $_GET["echostr"];
