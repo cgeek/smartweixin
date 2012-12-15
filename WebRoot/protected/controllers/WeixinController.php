@@ -304,7 +304,21 @@ class WeixinController extends Controller
 		}
 	}
 
+	private function _returnSquarePoint($lat, $lon, $distance = 0.5)
+	{
+		$dlon =  2 * asin(sin($distance / (2 * $this->EARTH_RADIUS)) / cos(deg2rad($lat)));
+		$dlon = rad2deg($dlon);
 
+		$dlat = $distance/$this->EARTH_RADIUS;
+		$dlat = rad2deg($dlat);
+
+		return array(
+			'left-top'=>array('lat'=>$lat + $dlat,'lon'=>$lon-$dlon),
+			'right-top'=>array('lat'=>$lat + $dlat, 'lon'=>$lon + $dlon),
+			'left-bottom'=>array('lat'=>$lat - $dlat, 'lon'=>$lon - $dlon),
+			'right-bottom'=>array('lat'=>$lat - $dlat, 'lon'=>$lon + $dlon)
+			);
+	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
