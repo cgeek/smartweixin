@@ -42,11 +42,32 @@ class AnswerController extends Controller
 				$this->_data['user_avatar'] = $user_db['avatar'];
 			}
 			$this->_update_answer_count($data['question_id']);
+		//	$this->_share_weibo();
 			$this->ajax_response(200,'',$this->_data);
 		} else {
 			//var_dump($new_answer->getErrors());
 			$this->ajax_response(500,'插入失败');
 		}
+	}
+
+	public function actionShareWeibo()
+	{
+		Yii::import('ext.qqWeibo.QqWeibo',true);
+
+		$user_id = $_GET['user_id'];
+		$user_db = User::model()->findByPk($user_id)->attributes;
+
+		echo json_encode($user_db);die();
+		$_SESSION['t_access_token'] = $user_db['access_token'];
+		$_SESSION['t_openid'] = $user_db['out_uid'];
+		$_SESSION['t_openkey'] = $user_db['t_openkey'];
+	//	echo json_encode($user_db);die();
+		OAuth::init('801288215', '6838887096887f3bbcb44fd13369d159');
+		$params = array(
+		 	'content' => '测试发表一条微博'
+		 );
+		 $r = Tencent::api('t/add', $params, 'POST');
+		 echo $r;
 	}
 
 	public function actionDelete($id = NULL)

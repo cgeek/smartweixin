@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "User".
  *
- * The followings are the available columns in table 'user':
+ * The followings are the available columns in table 'User':
  * @property integer $user_id
  * @property string $user_name
  * @property string $password
@@ -17,7 +17,9 @@
  * @property string $gender
  * @property string $out_source
  * @property string $out_uid
+ * @property string $t_openkey
  * @property string $out_token
+ * @property string $out_expire_time
  * @property integer $pin_count
  * @property integer $msg_count
  * @property integer $fans_count
@@ -44,7 +46,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'User';
 	}
 
 	/**
@@ -58,11 +60,11 @@ class User extends CActiveRecord
 			array('ctime', 'required'),
 			array('pin_count, msg_count, fans_count, follow_count, ctime, status', 'numerical', 'integerOnly'=>true),
 			array('user_name, password, gender', 'length', 'max'=>64),
-			array('email, website, location, province, description, avatar, avatar_large, out_source, out_uid, out_token', 'length', 'max'=>255),
+			array('email, website, location, province, description, avatar, avatar_large, out_source, out_uid, t_openkey, out_token, out_expire_time', 'length', 'max'=>255),
 			array('mtime, last_login_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, user_name, password, email, website, location, province, description, avatar, avatar_large, gender, out_source, out_uid, out_token, pin_count, msg_count, fans_count, follow_count, ctime, mtime, last_login_time, status', 'safe', 'on'=>'search'),
+			array('user_id, user_name, password, email, website, location, province, description, avatar, avatar_large, gender, out_source, out_uid, t_openkey, out_token, out_expire_time, pin_count, msg_count, fans_count, follow_count, ctime, mtime, last_login_time, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +98,9 @@ class User extends CActiveRecord
 			'gender' => 'Gender',
 			'out_source' => 'Out Source',
 			'out_uid' => 'Out Uid',
+			't_openkey' => 'T Openkey',
 			'out_token' => 'Out Token',
+			'out_expire_time' => 'Out Expire Time',
 			'pin_count' => 'Pin Count',
 			'msg_count' => 'Msg Count',
 			'fans_count' => 'Fans Count',
@@ -132,7 +136,9 @@ class User extends CActiveRecord
 		$criteria->compare('gender',$this->gender,true);
 		$criteria->compare('out_source',$this->out_source,true);
 		$criteria->compare('out_uid',$this->out_uid,true);
+		$criteria->compare('t_openkey',$this->t_openkey,true);
 		$criteria->compare('out_token',$this->out_token,true);
+		$criteria->compare('out_expire_time',$this->out_expire_time,true);
 		$criteria->compare('pin_count',$this->pin_count);
 		$criteria->compare('msg_count',$this->msg_count);
 		$criteria->compare('fans_count',$this->fans_count);

@@ -62,7 +62,7 @@ class OauthController extends Controller
 	{
 		$_SESSION['t_access_token'] = $_GET['access_token'];
 		$_SESSION['t_refresh_token'] = $_GET['refresh_token'];
-		$_SESSION['t_expire_in'] = $_GET['expire_in'];
+		$_SESSION['t_expire_time'] = $_GET['expire_time'];
 		$_SESSION['t_openid'] = $_GET['open_id'];
 		$_SESSION['t_openkey'] = $_GET['open_key'];
 		
@@ -79,6 +79,7 @@ class OauthController extends Controller
 				$user_info['profile_image_url'] = $user['head'] . '/50';
 				$user_info['avatar_large'] = $user['head'] . '/180';
 				$user_info['t_openkey'] = $_SESSION['t_openkey'];
+				$user_info['out_expire_time'] = $_SESSION['t_expire_time'];
 				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
 
 				$new_user = $this->_get_user_info($$user_info['id'], $user_info);
@@ -124,6 +125,8 @@ class OauthController extends Controller
 			$new_user->out_source = 'weibo';
 			$new_user->out_uid = $user_info['id'];
 			$new_user->out_token = $_SESSION['token']['access_token'];
+			$new_user->t_openkey = $user_info['t_openkey'];
+			$new_user->out_expire_time = $user_info['out_expire_time'];
 			$new_user->ctime = time();
 			$new_user->status = 0;
 			if($new_user->save()) {

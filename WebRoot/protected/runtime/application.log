@@ -12358,3 +12358,123 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/answer/delete?answer_id=2
 ---
+2012/12/16 02:21:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:22:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:22:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:22:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:22:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:23:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:23:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:24:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:24:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:24:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:24:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "share_weibo".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('share_weibo')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('share_weibo')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/share_we...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/answer/share_weibo
+---
+2012/12/16 02:44:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/cgeek/Sites/smartweixin/framework/gii/GiiModule.php:169
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(264): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('gii')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/gii
+---
