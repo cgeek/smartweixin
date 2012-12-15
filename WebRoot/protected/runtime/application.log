@@ -12496,3 +12496,13 @@ Stack trace:
 #13 {main}
 REQUEST_URI=/answer/post?content=%E8%B0%81%E6%9C%89%E7%A6%8F%E4%BA%91%E5%92%96%E5%95%A1%E7%9A%84%E5%89%8D%E5%8F%B0%E7%BE%8E%E5%A5%B3%E7%9A%84%E7%94%B5%E8%AF%9D%E5%90%97&user_id=27&lat=12.00&lon=123.09&question_id=1
 ---
+2012/12/16 05:40:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "view".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('view')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('view')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('question/view')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/question/1
+---

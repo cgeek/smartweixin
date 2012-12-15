@@ -22,6 +22,7 @@
 			</ul>
 			<ul class="answer_list">
 				<s><i></i></s>
+<?php if(!empty($answer_list)):?>
 		<?php foreach($answer_list as $answer):?>
 				<li class="clearfix" >
 					<div class="avatar">
@@ -34,6 +35,9 @@
 					</div>
 				</li>
 		<?php endforeach;?>
+<?php else:?>
+			<p>还没有回答，赶紧抢沙发</p>
+<?php endif;?>
 			</ul>
 		</div>
 		<div class="jumpToApp">
