@@ -56,6 +56,7 @@ class WeixinController extends Controller
 				$answer['user_name'] = $user_db['user_name'];
 				$answer['user_avatar'] = $user_db['avatar'];
 			}
+			$answer['ctime'] = human_time($answer['ctime']);
 			$answer_list[] = $answer;
 		}
 		return array('count'=> $count, 'answer_list' => $answer_list);
