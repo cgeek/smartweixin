@@ -36,6 +36,7 @@ class AnswerController extends Controller
 			// 更新用户发表数量
 			$this->_data = $data;
 			$this->_data['answer_id'] = $new_answer_id;
+			$this->_data['ctime'] = human_time(time());
 			$user_db = User::model()->findByPk($data['user_id']);
 			if(!empty($user_db)) {
 				$this->_data['user_name'] = $user_db['user_name'];
