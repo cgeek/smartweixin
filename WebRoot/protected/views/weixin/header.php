@@ -23,7 +23,7 @@
 			.header a {underline:none;text-decoration:none;}
 			.header .down-text { color:#fff;underline:none; text-decoration:none; float:left; margin-top:10px; font-size:13px;}
 			.question_list li {padding:5px 10px; font-size:14px; border-bottom:1px solid #ccc;}
-			.question_list li:last_child { border-bottom:0;}
+			.question_list li:last-child { border-bottom:0;}
 			.question_list li .content { float:left; margin-left:10px; word-break:break-word; word-wrap:break-word; color:#555; width:240px;}
 			.question_list li .avatar {width:40px;height:40px; float:left; padding:1px; border:1px solid #ccc;}
 			.question_list li .avatar img {width:40px;height:40px;}
@@ -33,8 +33,11 @@
 
 			.answer_list {background:#e5e5e5; border-top:1px solid #d8d8d8; padding-top:10px; position:relative;}
 			.answer_list li {border-bottom:1px dashed #ccc;}
-			.answer_list li:last_child { border-bottom:0;}
+			.answer_list li:last-child { border-bottom:0;}
 			.answer_list li .avatar{border-color:#fff;padding:0;}
+			.answer_list em {border-right: 10px solid #fff;	border-bottom: 10px solid #e5e5e5; border-left: 10px solid #fff; position: absolute; top: -10px;left: 50px;}
+			s{ position:absolute; top:-21px; left:140px; display:block; height:0; width:0; font-size: 0; line-height: 0; border-color:transparent transparent #ccc transparent; border-style:dashed dashed solid dashed; border-width:10px; }
+			i{ position:absolute; top:-9px; left:-10px; display:block; height:0; width:0;font-size: 0; line-height: 0; border-color:transparent transparent #e5e5e5 transparent; border-style:dashed dashed solid dashed; border-width:10px; }
 		</style>
 </head>
 <body>

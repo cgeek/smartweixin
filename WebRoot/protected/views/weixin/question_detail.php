@@ -21,7 +21,7 @@
 				</li>
 			</ul>
 			<ul class="answer_list">
-				<em></em>
+				<s><i></i></s>
 		<?php foreach($answer_list as $answer):?>
 				<li class="clearfix" >
 					<div class="avatar">
