@@ -71,8 +71,8 @@ class OauthController extends Controller
 				$user_info['screen_name'] = $user['name'];
 				$user_info['out_uid'] = $user['openid'];
 				$user_info['id'] = $user['openid'];
-				$user_info['profile_image_url'] = $user['head'];
-				$user_info['avatar_large'] = $user['head'];
+				$user_info['profile_image_url'] = $user['head'] . '/50';
+				$user_info['avatar_large'] = $user['head'] . '/180';
 				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
 				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
 
