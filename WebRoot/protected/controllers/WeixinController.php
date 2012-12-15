@@ -79,7 +79,7 @@ class WeixinController extends Controller
 		$this->renderPartial('/weixin/question_list', $this->_data);
 	}
 
-	private function _get_question_list($lat = '0', $lon = '0', $keyword ='', $limit = 5)
+	private function _get_question_list($lat = '0', $lon = '0', $keyword ='', $limit = 2)
 	{
 		$distance = 2;
 		if(!empty($lat) && $lat > 0 && !empty($lon) && $lon > 0) {
@@ -144,6 +144,7 @@ class WeixinController extends Controller
 
 	private function _responseText($message)
 	{
+		$message['msgType'] = 'news';
 		$message['lat'] = '30.260466524447';
 		$message['lon'] = '120.095329284668';
 		return $this->_responseLocation($message);
@@ -206,9 +207,8 @@ class WeixinController extends Controller
 			$items .= '</item>';
 		}
 			$items .= '<item>';
-			$items .= "<Title></Title>";
+			$items .= "<Title>查看更多附近的问答</Title>";
 			$items .= "<Description>查看更多附近的问答</Description>";
-			$items .= "<picUrl></picUrl>";
 			$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
 			$items .= '</item>';
 		$items .= '</Articles>';
