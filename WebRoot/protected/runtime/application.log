@@ -11948,3 +11948,83 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/gii
 ---
+2012/12/15 16:13:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "question_list".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('question_list')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('question_list')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/weixin/question_list
+---
+2012/12/15 16:13:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "question_list".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('question_list')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('question_list')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/weixin/question_list
+---
+2012/12/15 16:13:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "questionList".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('questionList')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('questionList')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/weixin/questionList
+---
+2012/12/15 16:15:39 [error] [exception.CException] exception 'CException' with message 'WeixinController cannot find the requested view "/weixin/question_list".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:879
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(783): CController->renderPartial('/weixin/questio...', NULL, true)
+#1 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/WeixinController.php(18): CController->render('/weixin/questio...')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/actions/CInlineAction.php(50): WeixinController->actionQuestionList()
+#3 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('questionList')
+#7 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question...')
+#8 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#10 {main}
+REQUEST_URI=/weixin/questionList
+---
+2012/12/15 17:31:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "question".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('question')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('question')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/weixin/question/15
+HTTP_REFERER=http://192.168.1.121/weixin/questionList?lat=30.260466524447&lon=120.095329284668&limit=10
+---
+2012/12/15 17:33:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "question".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('question')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('question')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/weixin/question/15
+HTTP_REFERER=http://192.168.1.121/weixin/questionList?lat=30.260466524447&lon=120.095329284668&limit=10
+---
+2012/12/15 17:33:48 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:337
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('question')
+#4 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('weixin/question')
+#5 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#7 {main}
+REQUEST_URI=/weixin/question/15
+HTTP_REFERER=http://192.168.1.121/weixin/questionList?lat=30.260466524447&lon=120.095329284668&limit=10
+---

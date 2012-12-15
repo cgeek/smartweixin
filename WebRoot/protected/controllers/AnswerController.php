@@ -36,9 +36,14 @@ class AnswerController extends Controller
 			// 更新用户发表数量
 			$this->_data = $data;
 			$this->_data['answer_id'] = $new_answer_id;
+			$user_db = User::model()->findByPk($data['user_id']);
+			if(!empty($user_db)) {
+				$this->_data['user_name'] = $user_db['user_name'];
+				$this->_data['user_avatar'] = $user_db['avatar'];
+			}
 			$this->ajax_response(200,'',$this->_data);
 		} else {
-			var_dump($new_answer->getErrors());
+			//var_dump($new_answer->getErrors());
 			$this->ajax_response(500,'插入失败');
 		}
 	}

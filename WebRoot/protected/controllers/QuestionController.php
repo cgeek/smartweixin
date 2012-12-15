@@ -8,7 +8,7 @@ class QuestionController extends Controller
 
 	public function actionPost()
 	{
-		$data['content'] = htmlspecialchars(addslashes(trim($_GET['content'])));
+		$data['content'] = htmlspecialchars(urldecode(trim($_GET['content'])));
 		$data['lat'] = $_GET['lat'];
 		$data['lon'] = $_GET['lon'];
 		$data['user_id'] = $_GET['user_id'];
@@ -17,7 +17,6 @@ class QuestionController extends Controller
 			$this->ajax_response(404,'内容或者用户id不能为空');
 		}
 
-		//echo json_encode($data);die();
 		$this->_save_question($data);
 	}
 
@@ -36,8 +35,8 @@ class QuestionController extends Controller
 		{
 			$new_question_id = $new_question->question_id;
 			// 更新用户发表数量
-			$this->_data = $data;
-			$this->_data['question_id'] = $new_question_id;
+			$question_db = Question::model()->findByPk($new_question_id);
+			$this->_data = $this->_format_question($question_db);
 			$this->ajax_response(200,'',$this->_data);
 		} else {
 			var_dump($new_question->getErrors());
@@ -123,20 +122,26 @@ class QuestionController extends Controller
 		$question_list = array();
 		foreach($data as $question)
 		{
-			$question_list[] = $this->_format_question($question->attributes);
+			$question_list[] = $this->_format_question($question->attributes, $lat, $lon);
 		}
 		$this->_data['count'] = $count;
 		$this->_data['list'] = $question_list;
 		$this->ajax_response(200,'',$this->_data);
 	}
 
-	private function _format_question($question_db)
+	private function _format_question($question_db , $lat =0, $lon = 0)
 	{
 		$user = User::model()->findByPk($question_db['user_id']);
+		if($lat > 0 && $lon > 0 && $question_db['lat'] > 0 && $question_db['lon'] > 0) {
+			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']);
+		} else {
+			$distance = 0;
+		}
 		$data = array(
 			'question_id' => $question_db['question_id'],
 			'content' => $question_db['content'],
 			'answer_count' => $question_db['answer_count'],
+			'distance' => $distance,
 			'ctime' =>  human_time($question_db['ctime']),
 			'lat' => $question_db['lat'],
 			'lon' => $question_db['lon'],
@@ -146,6 +151,7 @@ class QuestionController extends Controller
 		);
 		return $data;
 	}
+
 
 	private function _returnSquarePoint($lat, $lon, $distance = 0.5)
 	{

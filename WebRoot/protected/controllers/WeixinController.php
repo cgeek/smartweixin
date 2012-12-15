@@ -4,9 +4,33 @@ class WeixinController extends Controller
 {
 	private $TOKEN = 'askdaddy';
 
+	private $_data;
+
 	public function actionIndex()
 	{
 		echo 'test';
+	}
+	public function actionQuestion($question_id = NULL)
+	{
+		echo $question_id;
+	}
+
+	public function actionQuestionList()
+	{
+		$lat = isset($_GET['lat']) ? $_GET['lat'] : 0;
+		$lon = isset($_GET['lon']) ? $_GET['lon'] : 0;
+		$limit = isset($_GET['limit']) ? $_GET['limit'] : 5;
+
+		$questions = $this->_get_question_list($lat, $lon, '', $limit);
+		$this->_data['count'] = $questions['count'];
+
+		$this->_data['question_list'] = $questions['list'];
+
+
+		if(isset($_GET['type']) && $_GET['type'] = 'json') {
+			echo json_encode($this->_data);die();
+		}
+		$this->renderPartial('/weixin/question_list', $this->_data);
 	}
 
 	private function _get_question_list($lat = '0', $lon = '0', $keyword ='', $limit = 5)
@@ -15,9 +39,8 @@ class WeixinController extends Controller
 		if(!empty($lat) && $lat > 0 && !empty($lon) && $lon > 0) {
 			//$squares = $this->_returnSquarePoint($lat, $lon, $distance);
 		}
-		$p = intval($_GET['page']) > 1 ? intval($_GET['page']) : 1;
-		$per_page = 10;
-		$offset = ($p - 1) * $per_page;
+		$per_page = $limit;
+		$offset = 0;
 		$limit = $per_page; 
 		$criteria = new CDbCriteria;
 		$criteria->addCondition("status=0");
@@ -43,15 +66,33 @@ class WeixinController extends Controller
 		{
 			$question_list[] = $this->_format_question($question->attributes);
 		}
-		$this->_data['count'] = $count;
-		$this->_data['list'] = $question_list;
-		$this->ajax_response(200,'',$this->_data);
+		$result['count'] = $count;
+		$result['list'] = $question_list;
+
+		return $result;
 	}
 
-	private function _format_question($question_db)
+	private function _format_question($question_db , $lat =0, $lon = 0)
 	{
-		return $question_db;
-
+		$user = User::model()->findByPk($question_db['user_id']);
+		if($lat > 0 && $lon > 0 && $question_db['lat'] > 0 && $question_db['lon'] > 0) {
+			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']);
+		} else {
+			$distance = 0;
+		}
+		$data = array(
+			'question_id' => $question_db['question_id'],
+			'content' => $question_db['content'],
+			'answer_count' => $question_db['answer_count'],
+			'ctime' =>  human_time($question_db['ctime']),
+			'distance' => $distance,
+			'lat' => $question_db['lat'],
+			'lon' => $question_db['lon'],
+			'user_id' => $question_db['user_id'],
+			'user_avatar' => $user['avatar'],
+			'user_name' => $user['user_name'],
+		);
+		return $data;
 	}
 
 	private function _responseText($message)
