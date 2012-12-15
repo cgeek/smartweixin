@@ -8,7 +8,8 @@ class WeixinController extends Controller
 		echo 'test';
 
 	}
-	public function actionValid()
+
+	public function actionMessage()
     {
         $echoStr = $_GET["echostr"];
 
