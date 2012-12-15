@@ -135,7 +135,7 @@ class QuestionController extends Controller
 			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']) * 1000;
 			$distance = intval($distance) . "米";
 		} else {
-			$distance = 0;
+			$distance = '';
 		}
 		$data = array(
 			'question_id' => $question_db['question_id'],
