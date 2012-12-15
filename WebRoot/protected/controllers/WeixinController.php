@@ -122,9 +122,10 @@ class WeixinController extends Controller
 	{
 		$user = User::model()->findByPk($question_db['user_id']);
 		if($lat > 0 && $lon > 0 && $question_db['lat'] > 0 && $question_db['lon'] > 0) {
-			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']);
+			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']) * 1000;
+			$distance = intval($distance) . "米";
 		} else {
-			$distance = 0;
+			$distance = '';
 		}
 		$data = array(
 			'question_id' => $question_db['question_id'],
@@ -183,15 +184,17 @@ class WeixinController extends Controller
 
 		$list_url = "http://askdaddy.trip007.cn/weixin/questionList?lat=" . $message['lat'] . "&lon=" . $message['lon'];
 		
-		$items = '<ArticleCount>' . count($question_list) . '</ArticleCount>';
+		$items = '<ArticleCount>' . count($question_list) + 1 . '</ArticleCount>';
 		$items .= '<Articles>';
 
+		/*
 		$items .= '<item>';
 		$items .= "<Title>查看更多附近的问答</Title>";
 		$items .= "<Description>查看更多附近的问答</Description>";
 		$items .= "<picUrl>http://askdaddy.trip007.cn/images/weixin_cover.png</picUrl>";
 		$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
 		$items .= '</item>';
+		*/
 
 		foreach($question_list['list'] as $question) {
 			$items .= '<item>';

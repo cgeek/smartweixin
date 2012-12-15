@@ -133,7 +133,8 @@ class QuestionController extends Controller
 	{
 		$user = User::model()->findByPk($question_db['user_id']);
 		if($lat > 0 && $lon > 0 && $question_db['lat'] > 0 && $question_db['lon'] > 0) {
-			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']);
+			$distance = GetDistance($lat, $lon, $question_db['lat'], $question_db['lon']) * 1000;
+			$distance = intval($distance) . "米";
 		} else {
 			$distance = 0;
 		}
