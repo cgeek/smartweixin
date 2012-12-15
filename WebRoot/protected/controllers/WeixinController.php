@@ -150,7 +150,7 @@ class WeixinController extends Controller
 	{
 
 		$content = '';
-		if(empty($message['content'])) {
+		if($message['content'] == 'Hello2BizUser' || empty($message['content'])) {
 			$content = "你可以通过[点你的微信下方的+按钮 -> 选择位置-> 点击右上角的发送按钮]来获取周边问答或者发送关键词获取附近相关问答";
 		} else if($message['content'] == '饿了' && $message['content'] == '附近餐馆') {
 			$content = "可以调用街旁app返回附近餐馆";
