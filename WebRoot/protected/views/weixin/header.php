@@ -31,7 +31,7 @@
 			.question_list li span.time {color:#ccc; font-size:12px;}
 			.question_list li span.count { color:#0381F6; font-size:12px; margin-left:10px;}
 
-			.answer_list {background:#e5e5e5; border-top:1px solid #d8d8d8; padding-top:10px; position:relative;}
+			.answer_list {background:#e5e5e5; border-top:1px solid #d8d8d8; padding-top:10px; position:relative; margin-top:5px;}
 			.answer_list li {border-bottom:1px dashed #ccc;}
 			.answer_list li:last-child { border-bottom:0;}
 			.answer_list li .avatar{border-color:#fff;padding:0;}
@@ -40,12 +40,7 @@
 			i{ position:absolute; top:-9px; left:-10px; display:block; height:0; width:0;font-size: 0; line-height: 0; border-color:transparent transparent #e5e5e5 transparent; border-style:dashed dashed solid dashed; border-width:10px; }
 			.jumpToApp { height:100px; position:relative;}
 			.jumpToApp img {width:320px; }
-			.jump_app_text {position: absolute;
-			top: 13px;
-			left: 118px;
-			color: #555;
-			font-size: 12px;
-			text-decoration: none;}
+			.jump_app_text {position: absolute; top: 22px; left: 118px; color: #555; font-size: 14px; text-decoration: none;}
 		</style>
 </head>
 <body>
