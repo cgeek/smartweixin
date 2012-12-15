@@ -83,8 +83,9 @@ class WeixinController extends Controller
 	{
 		$distance = 2;
 		if(!empty($lat) && $lat > 0 && !empty($lon) && $lon > 0) {
-			//$squares = $this->_returnSquarePoint($lat, $lon, $distance);
+			$squares = $this->_returnSquarePoint($lat, $lon, $distance);
 		}
+		
 		$per_page = $limit;
 		$offset = 0;
 		$limit = $per_page; 
@@ -99,7 +100,7 @@ class WeixinController extends Controller
 			$criteria->addCondition("lon<{$squares['right-bottom']['lon']}");
 		}
 		if(!empty($keyword)) {
-			
+			$criteria->addSearchCondition('content', $keyword);
 		}
 		$criteria->order = ' `view_count` DESC';
 		$criteria->order = ' `ctime` DESC';
@@ -144,11 +145,17 @@ class WeixinController extends Controller
 
 	private function _responseText($message)
 	{
-		$message['msgType'] = 'news';
-		$message['lat'] = '30.260466524447';
-		$message['lon'] = '120.095329284668';
-		return $this->_responseLocation($message);
 
+		$content = '';
+		if(empty($message['content'])) {
+			$content = "你可以通过[点你的微信下方的+按钮 -> 选择位置-> 点击右上角的发送按钮]来获取周边问答或者发送关键词获取附近相关问答";
+		} else if($message['content'] == '饿了' && $message['content'] == '附近餐馆') {
+			$content = "可以调用街旁app返回附近餐馆";
+		} else {
+			$message['msgType'] = 'news';
+			$content = $this->_responseLocation($message ,$message['content']);
+		}
+	
 		$resutlStr = '';
 		$textTpl = "<xml>
 						<ToUserName><![CDATA[%s]]></ToUserName>
@@ -158,7 +165,7 @@ class WeixinController extends Controller
 						<Content><![CDATA[%s]]></Content>
 						<FuncFlag>0</FuncFlag>
 						</xml>";
-		$resultStr = sprintf($textTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType'], '测试');
+		$resultStr = sprintf($textTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType'], $content);
 		return $resultStr;
 	}
 
@@ -179,9 +186,14 @@ class WeixinController extends Controller
 		}
 		//echo json_encode($message);die();
 	}
-	private function _responseLocation($message)
+
+	private function _responseLocation($message, $keyword = '')
 	{
-		$question_list = $this->_get_question_list($message['lat'], $message['lon']);
+		if(!empty($keyword)) {
+			$question_list = $this->_get_question_list(0,0, $keyword);
+		} else {
+			$question_list = $this->_get_question_list($message['lat'], $message['lon']);
+		}
 
 		$list_url = "http://askdaddy.trip007.cn/weixin/questionList?lat=" . $message['lat'] . "&lon=" . $message['lon'];
 
@@ -189,14 +201,6 @@ class WeixinController extends Controller
 		$items = '<ArticleCount>' . $count. '</ArticleCount>';
 		$items .= '<Articles>';
 
-		/*
-		$items .= '<item>';
-		$items .= "<Title>查看更多附近的问答</Title>";
-		$items .= "<Description>查看更多附近的问答</Description>";
-		$items .= "<picUrl>http://askdaddy.trip007.cn/images/weixin_cover.png</picUrl>";
-		$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
-		$items .= '</item>';
-		*/
 		foreach($question_list['list'] as $key=>$question) {
 			$items .= '<item>';
 			$items .= "<Title><![CDATA[" . cut_str($question['content'], 20) . "]]></Title>";

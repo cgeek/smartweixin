@@ -12506,3 +12506,13 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/question/1
 ---
+2012/12/16 06:22:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/
+---

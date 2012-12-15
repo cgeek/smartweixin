@@ -32,7 +32,7 @@
 			.question_list li span.count { color:#0381F6; font-size:12px; margin-left:10px;}
 
 			.answer_list {background:#e5e5e5; border-top:1px solid #d8d8d8; padding-top:10px; position:relative; margin-top:5px; min-height:100px;}
-			.answer_list p.no_answer { text-align:center; margin-top:20px;}
+			.answer_list p.no_answer { text-align:center; margin-top:20px; font-size:13px; color:#555;}
 			.answer_list li {border-bottom:1px dashed #ccc;}
 			.answer_list li:last-child { border-bottom:0;}
 			.answer_list li .avatar{border-color:#fff;padding:0;}
