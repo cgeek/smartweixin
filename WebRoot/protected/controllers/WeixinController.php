@@ -183,8 +183,9 @@ class WeixinController extends Controller
 		$question_list = $this->_get_question_list($message['lat'], $message['lon']);
 
 		$list_url = "http://askdaddy.trip007.cn/weixin/questionList?lat=" . $message['lat'] . "&lon=" . $message['lon'];
-		
-		$items = '<ArticleCount>' . count($question_list) + 1 . '</ArticleCount>';
+
+		$count = count($question_list) + 1;
+		$items = '<ArticleCount>' . $count. '</ArticleCount>';
 		$items .= '<Articles>';
 
 		/*
@@ -198,14 +199,14 @@ class WeixinController extends Controller
 
 		foreach($question_list['list'] as $question) {
 			$items .= '<item>';
-			$items .= "<Title>" . $question['content'] . "</Title>";
-			$items .= "<Description>" . $question['content'] . "</Description>";
+			$items .= "<Title>" . cut_str($question['content'], 20) . "</Title>";
+			$items .= "<Description>" . cut_str($question['content'],20) . "</Description>";
 			$items .= "<picUrl>" . $question['user_avatar'] . "</picUrl>";
 			$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
 			$items .= '</item>';
 		}
 			$items .= '<item>';
-			$items .= "<Title>查看更多附近的问答</Title>";
+			$items .= "<Title></Title>";
 			$items .= "<Description>查看更多附近的问答</Description>";
 			$items .= "<picUrl></picUrl>";
 			$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
