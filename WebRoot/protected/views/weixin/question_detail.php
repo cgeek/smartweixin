@@ -36,7 +36,7 @@
 				</li>
 		<?php endforeach;?>
 <?php else:?>
-			<p>还没有回答，赶紧抢沙发</p>
+			<p class="no_answer">还没有回答，赶紧抢沙发</p>
 <?php endif;?>
 			</ul>
 		</div>
