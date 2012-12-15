@@ -14,7 +14,7 @@
  * @property string $lon
  * @property integer $status
  */
-class answer extends CActiveRecord
+class Answer extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
