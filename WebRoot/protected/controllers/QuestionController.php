@@ -98,7 +98,7 @@ class QuestionController extends Controller
 		if(!empty($lat) && $lat > 0 && !empty($lon) && $lon > 0) {
 			//$squares = $this->_returnSquarePoint($lat, $lon, $distance);
 		}
-		$p = intval($_GET['page']) > 1 ? intval($_GET['page']) : 1;
+		$p = isset($_GET['page']) > 1 ? intval($_GET['page']) : 1;
 		$per_page = 10;
 		$offset = ($p - 1) * $per_page;
 		$limit = $per_page; 
