@@ -22,7 +22,7 @@
 			.header { width:100%;height:40px; background:#0381F6;float:left;margin-bottom:10px;}
 			.header .logo { float:left; width:50px;height:50px;}
 			.header a {underline:none;text-decoration:none;}
-			.header .down-text { color:#fff;underline:none; text-decoration:none; float:left; margin-top:10px;}
+			.header .down-text { color:#fff;underline:none; text-decoration:none; float:left; margin-top:10px; font-size:13px;}
 			.question_list li {width:100%; padding:5px 10px; font-size:14px; max-width:550px;}
 			.question_list li .content { float:left; margin-left:10px; word-break:break-word; word-wrap:break-word;}
 			.question_list li .avatar {width:40px;height:40px; float:left; padding:1px; border:1px solid #ccc;}
