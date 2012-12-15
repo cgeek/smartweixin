@@ -1,7 +1,6 @@
 <?php
 Yii::import('ext.sinaWeibo.SinaWeibo',true);
 Yii::import('ext.qqWeibo.QqWeibo',true);
-Yii::import('ext.qqWeibo.config',true);
 
 class OauthController extends Controller
 {
@@ -22,6 +21,8 @@ class OauthController extends Controller
 
 	public function actionQqWeiboCallback()
 	{
+		$callback = 'http://' . $_SERVER['HTTP_HOST'] . '/oauth/qqWeiboCallback';//回调url
+		OAuth::init('801288215', '6838887096887f3bbcb44fd13369d159');
 		if ($_GET['code']) {//已获得code
 			$code = $_GET['code'];
 			$openid = $_GET['openid'];
@@ -40,8 +41,9 @@ class OauthController extends Controller
 			    $_SESSION['t_openkey'] = $openkey;
 			    //验证授权
 			    $r = OAuth::checkOAuthValid();
-			    if ($r) {
-			    	header('Location: ' . $callback);//刷新页面
+				if ($r) {
+					$this->process_qqweibo_callback();
+		//	    	header('Location: ' . $callback);//刷新页面
 			    } else {
 			       exit('<h3>授权失败,请重试</h3>');
 			  	}
@@ -53,6 +55,34 @@ class OauthController extends Controller
 
 	public function actionQqWeiboUpdate()
 	{
+		$_SESSION['t_access_token'] = $_GET['access_token'];
+		$_SESSION['t_refresh_token'] = $_GET['refresh_token'];
+		$_SESSION['t_expire_in'] = $_GET['expire_in'];
+		$_SESSION['t_openid'] = $_GET['open_id'];
+		$_SESSION['t_openkey'] = $_GET['open_key'];
+		
+		OAuth::init('801288215', '6838887096887f3bbcb44fd13369d159');
+		if ($_SESSION['t_access_token'] || ($_SESSION['t_openid'] && $_SESSION['t_openkey'])) {//用户已授权
+		    //获取用户信息
+			$r = Tencent::api('user/info');
+			$r = json_decode($r, true);
+			$user = $r['data'];
+			if(!empty($user)) {
+				$user_info['screen_name'] = $user['name'];
+				$user_info['out_uid'] = $user['openid'];
+				$user_info['id'] = $user['openid'];
+				$user_info['profile_image_url'] = $user['head'];
+				$user_info['avatar_large'] = $user['head'];
+				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
+				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
+
+				$new_user = $this->_get_user_info($uid, $user_info);
+				$this->ajax_response(200, '', $new_user);
+			} else {
+				$this->ajax_response(500, '更新失败', $r);
+			}
+		}
+		die();
 
 		$array = array(
 			'user_id' => '2',
@@ -67,7 +97,49 @@ class OauthController extends Controller
 		);
 		echo json_encode($result);
 	}
-	
+
+	private function _get_user_info($uid, $user_info)
+	{
+		$user_db = User::model()->find("out_uid=:out_uid",array(":out_uid"=>$uid));
+		if(!empty($user_db)) {
+			$this->_identity=new UserIdentity($user_info['id'],'','weibo');
+			$this->_identity->authenticate();
+			Yii::app()->user->login($this->_identity,3600*24*30);
+			User::model()->updateByPk($user_db['user_id'], array('out_token'=>$access_token,'last_login_time'=>time()));
+			$this->redirect(Yii::app()->session['back_url']);
+		} else {
+			$new_user = new User;
+			$new_user->user_name = $user_info['screen_name'];
+			//$new_user->province = $user_info['province'];
+			//$new_user->location = $user_info['location'];
+			$new_user->avatar = $user_info['profile_image_url'];
+			$new_user->avatar_large = $user_info['avatar_large'];
+			//$new_user->gender = $user_info['gender'];
+			//$new_user->description = mysql_escape_string($user_info['description']);
+			$new_user->out_source = 'weibo';
+			$new_user->out_uid = $user_info['id'];
+			$new_user->out_token = $_SESSION['token']['access_token'];
+			$new_user->ctime = time();
+			$new_user->status = 0;
+			if($new_user->save()) {
+				//process login 
+				$new_user_id = $new_user->user_id;
+				return array(
+					'user_id' => $new_user_id,
+					'user_name' => $user_info['screen_name'],
+					'user_avatar' => $user_info['profile_image_url']
+				);
+			//	$this->_identity=new UserIdentity($user_info['id'],'','weibo');
+			//	$this->_identity->authenticate();
+			//	Yii::app()->user->login($this->_identity,3600*24*30);
+			//	$this->redirect(Yii::app()->session['back_url']);
+			} else {
+				header( "refresh:3;url=http://www.trip007.net/");
+				echo "<h1>添加用户失败！将会在3秒之后跳转到首页,请重新登录。如果没有，点击<a href=\"/\">这里</a>。</h1>";
+			}
+		}
+	}
+
 	public function actionWeibo()
 	{
 		$weiboService=new SinaWeibo(WB_AKEY, WB_SKEY);
@@ -94,6 +166,19 @@ class OauthController extends Controller
 			$this->process_out_callback();
 		} else {
 			echo '认证失败';
+		}
+	}
+
+	private function process_qqweibo_callback()
+	{
+		if ($_SESSION['t_access_token'] || ($_SESSION['t_openid'] && $_SESSION['t_openkey'])) {//用户已授权
+			echo '<pre><h3>已授权</h3>用户信息：<br>';
+		    //获取用户信息
+			  $r = Tencent::api('user/info');
+			  print_r(json_decode($r, true));
+			  echo '</pre>';
+		} else {
+			echo 'bbb';
 		}
 	}
 
