@@ -203,7 +203,7 @@ class WeixinController extends Controller
 			$items .= "<Title><![CDATA[" . cut_str($question['content'], 20) . "]]></Title>";
 			$items .= "<Description><![CDATA[" . cut_str($question['content'],20) . "]]></Description>";
 			if($key == 0) {
-				$items .= "<PicUrl><![CDATA[http://askdaddy.trip007.cn/images/weixin_cover.png]]></picUrl>";
+				$items .= "<PicUrl><![CDATA[http://askdaddy.trip007.cn/images/weixin_cover.png]]></PicUrl>";
 			} else {
 				$items .= "<PicUrl><![CDATA[" . $question['user_avatar'] . "]]></PicUrl>";
 			}
