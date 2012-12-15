@@ -71,6 +71,7 @@ class WeixinController extends Controller
 
 	private function _responseLocation($message)
 	{
+		/*
 		$question_list = $this->_get_question_list($message['lat'], $message['lon']);
 
 		$items = '<ArticleCount>' . count($question_list) . '</ArticleCount>';
@@ -84,15 +85,16 @@ class WeixinController extends Controller
 			$items .= '</item>';
 		}
 		$items .= '</Articles>';
+		 */
 		$LocationTpl = "<xml>
 						<ToUserName><![CDATA[%s]]></ToUserName>
 						<FromUserName><![CDATA[%s]]></FromUserName>
 						<CreateTime>%s</CreateTime>
 						<MsgType><![CDATA[%s]]></MsgType>
-						<![CDATA[%s]]>
+						<Content><![CDATA[%s]]></Content>
 						<FuncFlag>0</FuncFlag>
 					</xml>";
-		$resultStr = sprintf($LocationTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType'], $items);
+		$resultStr = sprintf($LocationTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType'], '坐标测试');
 		return $resultStr;
 	}
 
