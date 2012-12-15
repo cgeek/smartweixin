@@ -106,7 +106,7 @@ class WeixinController extends Controller
 	public function actionMessage()
 	{
 		//get post data, May be due to the different environments
-		$postStr = isset($GLOBALS["HTTP_RAW_POST_DATA"]) : $GLOBALS["HTTP_RAW_POST_DATA"] : '';
+		$postStr = isset($GLOBALS["HTTP_RAW_POST_DATA"]) ? $GLOBALS["HTTP_RAW_POST_DATA"] : '';
 
       	//extract post data
 		if (!empty($postStr)){
