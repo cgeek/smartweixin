@@ -83,7 +83,7 @@ class WeixinController extends Controller
 	{
 		$distance = 2;
 		if(!empty($lat) && $lat > 0 && !empty($lon) && $lon > 0) {
-			$squares = $this->_returnSquarePoint($lat, $lon, $distance);
+		//	$squares = $this->_returnSquarePoint($lat, $lon, $distance);
 		}
 		
 		$per_page = $limit;
@@ -153,7 +153,7 @@ class WeixinController extends Controller
 			$content = "可以调用街旁app返回附近餐馆";
 		} else {
 			$message['msgType'] = 'news';
-			$content = $this->_responseLocation($message ,$message['content']);
+			return $this->_responseLocation($message ,$message['content']);
 		}
 	
 		$resutlStr = '';
@@ -165,7 +165,7 @@ class WeixinController extends Controller
 						<Content><![CDATA[%s]]></Content>
 						<FuncFlag>0</FuncFlag>
 						</xml>";
-		$resultStr = sprintf($textTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType'], $content);
+		$resultStr = sprintf($textTpl, $message['fromUsername'], $message['toUsername'], time(), 'text', $content);
 		return $resultStr;
 	}
 
@@ -191,11 +191,12 @@ class WeixinController extends Controller
 	{
 		if(!empty($keyword)) {
 			$question_list = $this->_get_question_list(0,0, $keyword);
+			$list_url = "http://askdaddy.trip007.cn/weixin/questionList?lat=" . $message['lat'] . "&lon=" . $message['lon'] . "&keyword=" . $keyword;
 		} else {
 			$question_list = $this->_get_question_list($message['lat'], $message['lon']);
+			$list_url = "http://askdaddy.trip007.cn/weixin/questionList?lat=" . $message['lat'] . "&lon=" . $message['lon'];
 		}
-
-		$list_url = "http://askdaddy.trip007.cn/weixin/questionList?lat=" . $message['lat'] . "&lon=" . $message['lon'];
+		
 
 		$count = count($question_list) + 1;
 		$items = '<ArticleCount>' . $count. '</ArticleCount>';
@@ -229,7 +230,7 @@ class WeixinController extends Controller
 		$LocationTplFooter = "
 						<FuncFlag>0</FuncFlag>
 					</xml>";
-		$resultStr = sprintf($LocationTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType']) . $items . $LocationTplFooter;
+		$resultStr = sprintf($LocationTpl, $message['fromUsername'], $message['toUsername'], time(), 'news') . $items . $LocationTplFooter;
 		return $resultStr;
 	}
 
@@ -265,6 +266,7 @@ class WeixinController extends Controller
 				$message['picUrl'] = $postObj->PicUrl;
 				$resultStr = $this->_responseText($message);
 			}
+			error_log($resultStr);
 			echo $resultStr;
         } else {
         	echo "";
