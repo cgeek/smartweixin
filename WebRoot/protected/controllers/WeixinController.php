@@ -38,8 +38,7 @@ class WeixinController extends Controller
 
 	private function _get_answerlist($question_id)
 	{
-		$question_id = 1;
-		$limit = 10;
+		$limit = 100;
 		$criteria = new CDbCriteria;
 		$criteria->addCondition("status=0");
 		$criteria->addCondition("question_id=$question_id");
