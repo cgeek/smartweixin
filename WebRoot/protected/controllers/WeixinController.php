@@ -261,7 +261,7 @@ class WeixinController extends Controller
 				$message['lon'] = $postObj->Location_Y;
 				$message['scale'] = $postObj->Scale;
 				$message['label'] = $postObj->Label;
-				$resultStr = $this->_responseText($message);
+				$resultStr = $this->_responseLocation($message);
 			} else if($msgType == 'image') {
 				$message['picUrl'] = $postObj->PicUrl;
 				$resultStr = $this->_responseText($message);
