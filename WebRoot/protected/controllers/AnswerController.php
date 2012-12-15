@@ -49,6 +49,27 @@ class AnswerController extends Controller
 		}
 	}
 
+	public function actionDelete($id = NULL)
+	{
+		if(!empty($id)) {
+			$answer_id = $id;
+		} else {
+			$answer_id = $_GET['answer_id'];
+		}
+		if(empty($answer_id) || $answer_id <=0)
+			$this->ajax_response(false,'参数不正确');
+		$answer_db = Answer::model()->findByPk($answer_id);
+		if(empty($answer_db))
+			$this->ajax_response(404,'该信息不存在');
+
+		$data = array('status'=> -1);
+		Answer::model()->updateByPk($answer_id, $data);
+		// 更新用户发表数量
+
+		$this->_update_answer_count($answer_db['question_id']);
+		$this->ajax_response(200,'删除成功');
+	}
+
 	private function _update_answer_count($question_id)
 	{
 		$criteria = new CDbCriteria;

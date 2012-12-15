@@ -12327,3 +12327,34 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/oauth/qqWeiboUpdate?access_token=1067224297a9b8c3a3438abfeb628977&expire_time=1356196334.279260&open_id=E076DB41E53011E6224C34E7DC162491&open_key=264FD3965D4F8C2FB18374A53DE3ADD1&refresh_token=d970cf9c9591c601aa2d956c6954fb74&user_name=agassi_yzh
 ---
+2012/12/16 01:47:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?code=4fe920a3790f533bb1d5f14b966b3dd6&openid=771C807D6A10B01F3FC7F822F6339BA3&openkey=613065F8D71E71B94B3C8CC2E1080295&state=
+---
+2012/12/16 02:05:30 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1. The SQL statement executed was: SELECT COUNT(*) FROM `answer` `t` WHERE (status=0) AND (question_id=).
+in /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php (73)
+in /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php (64)
+in /Users/cgeek/Sites/smartweixin/WebRoot/index.php (17)
+2012/12/16 02:05:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1. The SQL statement executed was: SELECT COUNT(*) FROM `answer` `t` WHERE (status=0) AND (question_id=)' in /Users/cgeek/Sites/smartweixin/framework/db/CDbCommand.php:528
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/db/CDbCommand.php(425): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 /Users/cgeek/Sites/smartweixin/framework/db/ar/CActiveRecord.php(1541): CDbCommand->queryScalar()
+#2 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php(73): CActiveRecord->count(Object(CDbCriteria))
+#3 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php(64): AnswerController->_update_answer_count()
+#4 /Users/cgeek/Sites/smartweixin/framework/web/actions/CInlineAction.php(50): AnswerController->actionDelete()
+#5 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('delete')
+#9 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/delete')
+#10 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#12 {main}
+REQUEST_URI=/answer/delete?answer_id=2
+---

@@ -19,6 +19,11 @@ class OauthController extends Controller
 		*/
 	}
 
+	public function acctionQqWeiboAppCallback()
+	{
+	
+	}
+
 	public function actionQqWeiboCallback()
 	{
 		$callback = 'http://' . $_SERVER['HTTP_HOST'] . '/oauth/qqWeiboCallback';//回调url
@@ -68,15 +73,15 @@ class OauthController extends Controller
 			$r = json_decode($r, true);
 			$user = $r['data'];
 			if(!empty($user)) {
-				$user_info['screen_name'] = $user['name'];
+				$user_info['screen_name'] = $user['nick'];
 				$user_info['out_uid'] = $user['openid'];
 				$user_info['id'] = $user['openid'];
 				$user_info['profile_image_url'] = $user['head'] . '/50';
 				$user_info['avatar_large'] = $user['head'] . '/180';
-				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
+				$user_info['t_openkey'] = $_SESSION['t_openkey'];
 				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
 
-				$new_user = $this->_get_user_info($uid, $user_info);
+				$new_user = $this->_get_user_info($$user_info['id'], $user_info);
 				$this->ajax_response(200, '', $new_user);
 			} else {
 				$this->ajax_response(500, '更新失败', $r);
@@ -105,7 +110,7 @@ class OauthController extends Controller
 			$this->_identity=new UserIdentity($user_info['id'],'','weibo');
 			$this->_identity->authenticate();
 			Yii::app()->user->login($this->_identity,3600*24*30);
-			User::model()->updateByPk($user_db['user_id'], array('out_token'=>$access_token,'last_login_time'=>time()));
+			User::model()->updateByPk($user_db['user_id'], array('out_token'=>$user_info['token']['access_token'],'last_login_time'=>time()));
 			$this->redirect(Yii::app()->session['back_url']);
 		} else {
 			$new_user = new User;
