@@ -95,11 +95,20 @@ class OauthController extends Controller
 	{
 		$user_db = User::model()->find("out_uid=:out_uid",array(":out_uid"=>$uid));
 		if(!empty($user_db)) {
+			User::model()->updateByPk($user_db['user_id'], array('out_token'=>$user_info['token']['access_token'],'last_login_time'=>time()));
+			return array(
+				'user_id' => $user_db['user_id'],
+				'user_name' => $user_db['user_name'],
+				'user_avatar' => $user_db['avatar']
+			);
+			/*
 			$this->_identity=new UserIdentity($user_info['id'],'','weibo');
 			$this->_identity->authenticate();
 			Yii::app()->user->login($this->_identity,3600*24*30);
 			User::model()->updateByPk($user_db['user_id'], array('out_token'=>$user_info['token']['access_token'],'last_login_time'=>time()));
 			$this->redirect(Yii::app()->session['back_url']);
+			 */
+
 		} else {
 			$new_user = new User;
 			$new_user->user_name = $user_info['screen_name'];
