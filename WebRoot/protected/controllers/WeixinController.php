@@ -10,9 +10,55 @@ class WeixinController extends Controller
 	{
 		echo 'test';
 	}
-	public function actionQuestion($question_id = NULL)
+	public function actionQuestion($id = NULL)
 	{
-		echo $question_id;
+		$question_id = $id;
+		if(empty($question_id) || $question_id <= 0) {
+			$this->ajax_response(404,'参数不正确');
+		}
+		$question_db = Question::model()->findByPk($question_id);
+		if(empty($question_db)) {
+			$this->ajax_response(404,'参数不正确');
+		}
+
+		//update view_count
+		Question::model()->updateByPk($question_id, array('view_count'=> $pin['view_count'] +1));
+
+		$this->_data = $this->_format_question($question_db);
+		$answers = $this->_get_answerlist($question_id);
+		$this->_data['answer_list']= $answers['answer_list'];
+		$this->_data['answer_count']= $answers['count'];
+
+		if(isset($_GET['type']) && $_GET['type'] == 'json') {
+			$this->ajax_response(200,'',$this->_data);
+		} else {
+			$this->renderPartial('/weixin/question_detail', $this->_data);
+		}
+	}
+
+	private function _get_answerlist($question_id)
+	{
+		$question_id = 1;
+		$limit = 10;
+		$criteria = new CDbCriteria;
+		$criteria->addCondition("status=0");
+		$criteria->addCondition("question_id=$question_id");
+		$criteria->order = ' `ctime` DESC';
+		$criteria->limit = $limit;
+		$count = Answer::model()->count($criteria);
+		$answer_list_db = Answer::model()->findAll($criteria);
+		$answer_list = array();
+		foreach($answer_list_db as $answer_db)
+		{
+			$answer = $answer_db->attributes;
+			$user_db = User::model()->findByPk($answer['user_id']);
+			if(!empty($user_db)) {
+				$answer['user_name'] = $user_db['user_name'];
+				$answer['user_avatar'] = $user_db['avatar'];
+			}
+			$answer_list[] = $answer;
+		}
+		return array('count'=> $count, 'answer_list' => $answer_list);
 	}
 
 	public function actionQuestionList()
@@ -97,6 +143,10 @@ class WeixinController extends Controller
 
 	private function _responseText($message)
 	{
+		$message['lat'] = '30.260466524447';
+		$message['lon'] = '120.095329284668';
+		return $this->_responseLocation($message);
+
 		$resutlStr = '';
 		$textTpl = "<xml>
 						<ToUserName><![CDATA[%s]]></ToUserName>
@@ -110,15 +160,31 @@ class WeixinController extends Controller
 		return $resultStr;
 	}
 
+	public function actionResponseTest()
+	{
+		$type = isset($_GET['type']) ? $_GET['type'] : 'text';
+		$message = array();
+        $message['fromUsername'] = 'cgeek';
+        $message['toUsername'] = '求攻略';
+        $message['createTime'] = time();
+		$message['msgType'] = $msgType = $type;
+
+		if($type == 'location' && isset($_GET['lat']) && isset($_GET['lon'])) 
+		{
+			echo $this->_responseLocation($message);
+		} else if($type == 'text') {
+			echo $this->_responseText($message);
+		}
+		//echo json_encode($message);die();
+	}
 	private function _responseLocation($message)
 	{
-		/*
 		$question_list = $this->_get_question_list($message['lat'], $message['lon']);
 
 		$items = '<ArticleCount>' . count($question_list) . '</ArticleCount>';
 		$items .= '<Articles>';
-		foreach($question_list as $question) {
-			$items = '<item>';
+		foreach($question_list['list'] as $question) {
+			$items .= '<item>';
 			$items .= "<Title>" . $question['content'] . "</Title>";
 			$items .= "<Description>" . $question['content'] . "</Description>";
 			$items .= "<picUrl>" . $question['user_avatar'] . "</picUrl>";
@@ -126,16 +192,16 @@ class WeixinController extends Controller
 			$items .= '</item>';
 		}
 		$items .= '</Articles>';
-		 */
+
 		$LocationTpl = "<xml>
 						<ToUserName><![CDATA[%s]]></ToUserName>
 						<FromUserName><![CDATA[%s]]></FromUserName>
 						<CreateTime>%s</CreateTime>
-						<MsgType><![CDATA[%s]]></MsgType>
-						<Content><![CDATA[%s]]></Content>
+						<MsgType><![CDATA[%s]]></MsgType>";
+		$LocationTplFooter = "
 						<FuncFlag>0</FuncFlag>
 					</xml>";
-		$resultStr = sprintf($LocationTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType'], '坐标测试');
+		$resultStr = sprintf($LocationTpl, $message['fromUsername'], $message['toUsername'], time(), $message['msgType']) . $items . $LocationTplFooter;
 		return $resultStr;
 	}
 

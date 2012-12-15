@@ -19,7 +19,7 @@
 			.header .logo { float:left;}
 			.header a {underline:none;text-decoration:none;}
 			.header .down-text { color:#fff;underline:none; text-decoration:none; float:left; margin-top:10px;}
-			.question_list li {border-bottom:1px solid #ccc;width:100%; padding:5px 10px; font-size:14px; max-width:550px;}
+			.question_list li {width:100%; padding:5px 10px; font-size:14px; max-width:550px;}
 			.question_list li .content { float:left; margin-left:10px; word-break:break-word; word-wrap:break-word;}
 			.question_list li .avatar {width:40px;height:40px; float:left; padding:1px; border:1px solid #ccc;}
 			.question_list li .avatar img {width:40px;height:40px;}
@@ -27,6 +27,9 @@
 			.question_list li span.time {color:#ccc; font-size:12px;}
 			.question_list li span.count { color:#0381F6; font-size:12px;}
 
+			.answer_list {background:#e5e5e5; border-top:1px solid #d8d8d8; padding-top:10px; position:relative;}
+			.answer_list li {border-bottom:0px;}
+			.answer_list li .avatar{border-color:#fff;padding:0;}
 		</style>
 </head>
 <body>
@@ -39,21 +42,29 @@
 		</div>
 		<div class="question_list">
 			<ul>
-		<?php foreach($question_list as $question):?>
 				<li class="clearfix">
-				<a href="/weixin/question/<?=$question['question_id'];?>">
 					<div class="avatar">
-						<img src="<?=$question['user_avatar'];?>">
+						<img src="<?=$user_avatar;?>">
 					</div>
 					<div class="content">
-						<div class="user_name"><?=$question['user_name'];?></div>
-						<div class="question_content"><?=$question['content'];?></div>
-						<div class="more"><span class="time"><?=$question['ctime'];?></span>  <span class="count"><?=$question['answer_count'];?>个回答</span></div>
+						<div class="user_name"><?=$user_name;?></div>
+						<div class="question_content"><?=$content;?></div>
+						<div class="more"><span class="time"><?=$ctime;?></span>  <span class="count"><?=$answer_count;?>个回答</span></div>
 					</div>
-				<?php if($question['distance'] > 0 ):?>
-					<div class="distance"><?=$question['distance'];?>米<div>
-				<?php endif;?>
-				</a>
+				</li>
+			</ul>
+			<ul class="answer_list">
+				<em></em>
+		<?php foreach($answer_list as $answer):?>
+				<li class="clearfix">
+					<div class="avatar">
+						<img src="<?=$answer['user_avatar'];?>">
+					</div>
+					<div class="content">
+						<div class="user_name"><?=$answer['user_name'];?></div>
+						<div class="question_content"><?=$answer['content'];?></div>
+						<div class="more"><span class="time"><?=$answer['ctime'];?></span></div>
+					</div>
 				</li>
 		<?php endforeach;?>
 			</ul>
