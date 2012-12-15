@@ -2,6 +2,7 @@
 
 class WeixinController extends Controller
 {
+	private $TOKEN = 'askdaddy';
 	public function actionIndex()
 	{
 		echo 'test';
@@ -24,7 +25,7 @@ class WeixinController extends Controller
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];	
         		
-		$token = TOKEN;
+		$token = $this->TOKEN;
 		$tmpArr = array($token, $timestamp, $nonce);
 		sort($tmpArr);
 		$tmpStr = implode( $tmpArr );
