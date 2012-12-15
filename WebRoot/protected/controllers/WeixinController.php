@@ -9,7 +9,7 @@ class WeixinController extends Controller
 
 	}
 
-	public function actionMessage2()
+	public function actionMessage()
 	{
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
@@ -45,8 +45,8 @@ class WeixinController extends Controller
         }
 	}
 
-	//public function actionValid()
-	public function actionMessage()
+	public function actionValid()
+	//public function actionMessage()
     {
         $echoStr = $_GET["echostr"];
 
