@@ -11928,3 +11928,23 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/question/detail?question_id=1
 ---
+2012/12/15 14:45:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/cgeek/Sites/smartweixin/framework/gii/GiiModule.php:169
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(264): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('gii')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/gii
+---
+2012/12/15 14:45:44 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/cgeek/Sites/smartweixin/framework/gii/GiiModule.php:169
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(264): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('gii')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/gii
+---
