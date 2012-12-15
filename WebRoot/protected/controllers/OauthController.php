@@ -82,26 +82,13 @@ class OauthController extends Controller
 				$user_info['out_expire_time'] = $_SESSION['t_expire_time'];
 				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
 
+				error_log(var_dump($user_info));
 				$new_user = $this->_get_user_info($$user_info['id'], $user_info);
 				$this->ajax_response(200, '', $new_user);
 			} else {
 				$this->ajax_response(500, '更新失败', $r);
 			}
 		}
-		die();
-
-		$array = array(
-			'user_id' => '2',
-			'user_name' => 'qqweibo',
-			'user_avatar' => 'http://tp3.sinaimg.cn/1640306342/50/1278671284/1'
-		);
-
-		$result = array(
-			'code' => 200,
-			'message' => '',
-			'data' => $array
-		);
-		echo json_encode($result);
 	}
 
 	private function _get_user_info($uid, $user_info)
@@ -124,7 +111,7 @@ class OauthController extends Controller
 			//$new_user->description = mysql_escape_string($user_info['description']);
 			$new_user->out_source = 'weibo';
 			$new_user->out_uid = $user_info['id'];
-			$new_user->out_token = $_SESSION['token']['access_token'];
+			$new_user->out_token = $user_info['token']['access_token'];
 			$new_user->t_openkey = $user_info['t_openkey'];
 			$new_user->out_expire_time = $user_info['out_expire_time'];
 			$new_user->ctime = time();
