@@ -33,6 +33,7 @@
 
 			.answer_list {background:#e5e5e5; border-top:1px solid #d8d8d8; padding-top:10px; position:relative;}
 			.answer_list li {border-bottom:1px dashed #ccc;}
+			.answer_list li:last_child { border-bottom:0;}
 			.answer_list li .avatar{border-color:#fff;padding:0;}
 		</style>
 </head>
