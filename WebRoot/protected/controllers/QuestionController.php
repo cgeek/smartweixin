@@ -67,7 +67,6 @@ class QuestionController extends Controller
 
 	private function _get_answerlist($question_id)
 	{
-		$question_id = 1;
 		$limit = 100;
 		$criteria = new CDbCriteria;
 		$criteria->addCondition("status=0");
@@ -99,7 +98,7 @@ class QuestionController extends Controller
 			//$squares = $this->_returnSquarePoint($lat, $lon, $distance);
 		}
 		$p = isset($_GET['page'])  ? intval($_GET['page']) : 1;
-		$per_page = 10;
+		$per_page = 100;
 		$offset = ($p - 1) * $per_page;
 		$limit = $per_page; 
 		$criteria = new CDbCriteria;
