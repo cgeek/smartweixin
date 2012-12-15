@@ -42,7 +42,7 @@ class AnswerController extends Controller
 				$this->_data['user_avatar'] = $user_db['avatar'];
 			}
 			$this->_update_answer_count($data['question_id']);
-		//	$this->_share_weibo();
+			$this->_share_weibo($data);
 			$this->ajax_response(200,'',$this->_data);
 		} else {
 			//var_dump($new_answer->getErrors());
@@ -50,24 +50,24 @@ class AnswerController extends Controller
 		}
 	}
 
-	public function actionShareWeibo()
+	private function _share_weibo($data)
 	{
 		Yii::import('ext.qqWeibo.QqWeibo',true);
+		$user_db = User::model()->findByPk($data['user_id'])->attributes;
 
-		$user_id = $_GET['user_id'];
-		$user_db = User::model()->findByPk($user_id)->attributes;
-
-		echo json_encode($user_db);die();
 		$_SESSION['t_access_token'] = $user_db['access_token'];
 		$_SESSION['t_openid'] = $user_db['out_uid'];
 		$_SESSION['t_openkey'] = $user_db['t_openkey'];
-	//	echo json_encode($user_db);die();
+
+		$question_db = Question::model()->findByPk($data['question_id'])->attributes;
+		$question_user = User::model()->findByPk($question_db['user_id'])->attributes;
+
+		$content = $data['content'] . "//回复@" .$question_user['user_name'] . "：" . $question_db['content'];
 		OAuth::init('801288215', '6838887096887f3bbcb44fd13369d159');
 		$params = array(
-		 	'content' => '测试发表一条微博'
+		 	'content' => $content
 		 );
-		 $r = Tencent::api('t/add', $params, 'POST');
-		 echo $r;
+		$r = Tencent::api('t/add', $params, 'POST');
 	}
 
 	public function actionDelete($id = NULL)

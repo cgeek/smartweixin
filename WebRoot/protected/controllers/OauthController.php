@@ -82,7 +82,6 @@ class OauthController extends Controller
 				$user_info['out_expire_time'] = $_SESSION['t_expire_time'];
 				$user_info['token']['access_token'] = $_SESSION['t_access_token'];
 
-				error_log(var_dump($user_info));
 				$new_user = $this->_get_user_info($user_info['id'], $user_info);
 				$this->ajax_response(200, '', $new_user);
 			} else {

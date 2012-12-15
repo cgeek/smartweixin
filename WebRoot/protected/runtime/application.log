@@ -12478,3 +12478,21 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/gii
 ---
+2012/12/16 03:29:09 [error] [exception.CException] exception 'CException' with message 'Property "User.access_token" is not defined.' in /Users/cgeek/Sites/smartweixin/framework/base/CComponent.php:131
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/db/ar/CActiveRecord.php(144): CComponent->__get('access_token')
+#1 /Users/cgeek/Sites/smartweixin/framework/base/CModel.php(593): CActiveRecord->__get('access_token')
+#2 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php(58): CModel->offsetGet('access_token')
+#3 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php(45): AnswerController->_share_weibo(Array)
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/AnswerController.php(18): AnswerController->_save_answer(Array)
+#5 /Users/cgeek/Sites/smartweixin/framework/web/actions/CInlineAction.php(50): AnswerController->actionPost()
+#6 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#7 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#8 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('post')
+#10 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('answer/post')
+#11 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#12 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(17): CApplication->run()
+#13 {main}
+REQUEST_URI=/answer/post?content=%E8%B0%81%E6%9C%89%E7%A6%8F%E4%BA%91%E5%92%96%E5%95%A1%E7%9A%84%E5%89%8D%E5%8F%B0%E7%BE%8E%E5%A5%B3%E7%9A%84%E7%94%B5%E8%AF%9D%E5%90%97&user_id=27&lat=12.00&lon=123.09&question_id=1
+---

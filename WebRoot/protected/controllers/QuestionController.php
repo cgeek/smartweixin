@@ -37,12 +37,31 @@ class QuestionController extends Controller
 			// 更新用户发表数量
 			$question_db = Question::model()->findByPk($new_question_id);
 			$this->_data = $this->_format_question($question_db);
+			$this->_share_weibo($question_db->attributes);
 			$this->ajax_response(200,'',$this->_data);
 		} else {
-			var_dump($new_question->getErrors());
+			//var_dump($new_question->getErrors());
 			$this->ajax_response(500,'插入失败');
 		}
 	}
+
+	private function _share_weibo($data)
+	{
+		Yii::import('ext.qqWeibo.QqWeibo',true);
+		$user_db = User::model()->findByPk($data['user_id'])->attributes;
+
+		$_SESSION['t_access_token'] = $user_db['access_token'];
+		$_SESSION['t_openid'] = $user_db['out_uid'];
+		$_SESSION['t_openkey'] = $user_db['t_openkey'];
+
+		$content = $data['content'];
+		OAuth::init('801288215', '6838887096887f3bbcb44fd13369d159');
+		$params = array(
+		 	'content' => $content
+		 );
+		$r = Tencent::api('t/add', $params, 'POST');
+	}
+
 
 	public function actionDetail()
 	{
