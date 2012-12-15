@@ -22,7 +22,7 @@ class WeixinController extends Controller
 		}
 
 		//update view_count
-		Question::model()->updateByPk($question_id, array('view_count'=> $pin['view_count'] +1));
+		Question::model()->updateByPk($question_id, array('view_count'=> $question_db['view_count'] +1));
 
 		$this->_data = $this->_format_question($question_db);
 		$answers = $this->_get_answerlist($question_id);
