@@ -12264,3 +12264,37 @@ Stack trace:
 #15 {main}
 REQUEST_URI=/weixin/question/5
 ---
+2012/12/16 00:10:12 [error] [php] include(OAuth.php): failed to open stream: No such file or directory (/Users/cgeek/Sites/smartweixin/framework/YiiBase.php:423)
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/OauthController.php(12): spl_autoload_call()
+#1 /Users/cgeek/Sites/smartweixin/framework/web/actions/CInlineAction.php(50): OauthController->actionQqWeibo()
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(309): CInlineAction->runWithParams()
+#3 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(287): OauthController->runAction()
+#4 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(266): OauthController->runActionWithFilters()
+#5 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): OauthController->run()
+#6 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#7 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#8 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CWebApplication->run()
+REQUEST_URI=/oauth/qqWeibo
+in /Users/cgeek/Sites/smartweixin/WebRoot/protected/controllers/OauthController.php (12)
+in /Users/cgeek/Sites/smartweixin/WebRoot/index.php (16)
+2012/12/16 00:16:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?code=4fe920a3790f533bb1d5f14b966b3dd6&openid=771C807D6A10B01F3FC7F822F6339BA3&openkey=613065F8D71E71B94B3C8CC2E1080295&state=
+---
+2012/12/16 00:17:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "qqWeiboCallback".' in /Users/cgeek/Sites/smartweixin/framework/web/CController.php:484
+Stack trace:
+#0 /Users/cgeek/Sites/smartweixin/framework/web/CController.php(271): CController->missingAction('qqWeiboCallback')
+#1 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(276): CController->run('qqWeiboCallback')
+#2 /Users/cgeek/Sites/smartweixin/framework/web/CWebApplication.php(135): CWebApplication->runController('oauth/qqWeiboCa...')
+#3 /Users/cgeek/Sites/smartweixin/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/cgeek/Sites/smartweixin/WebRoot/index.php(16): CApplication->run()
+#5 {main}
+REQUEST_URI=/oauth/qqWeiboCallback?code=3fd3af784fa7a08315995d2e7384241b&openid=771C807D6A10B01F3FC7F822F6339BA3&openkey=613065F8D71E71B94B3C8CC2E1080295&state=
+---

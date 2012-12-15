@@ -1,10 +1,73 @@
 <?php
 Yii::import('ext.sinaWeibo.SinaWeibo',true);
+Yii::import('ext.qqWeibo.QqWeibo',true);
+Yii::import('ext.qqWeibo.config',true);
 
 class OauthController extends Controller
 {
 	private $_identity = NULL;
 
+	public function actionQqWeibo()
+	{
+		OAuth::init('801288215', '6838887096887f3bbcb44fd13369d159');
+		$callback = 'http://' . $_SERVER['HTTP_HOST'] . '/oauth/qqWeiboCallback';//回调url
+		$url = OAuth::getAuthorizeURL($callback);
+		header('Location: ' . $url);
+		/*
+		OAuth::init($client_id, $client_secret);
+		$r = OAuth::checkOAuthValid();
+		Tencent::$debug = $debug;
+		*/
+	}
+
+	public function actionQqWeiboCallback()
+	{
+		if ($_GET['code']) {//已获得code
+			$code = $_GET['code'];
+			$openid = $_GET['openid'];
+			$openkey = $_GET['openkey'];
+			//获取授权token
+			$url = OAuth::getAccessToken($code, $callback);
+			$r = Http::request($url);
+			parse_str($r, $out);
+ 			//存储授权数据
+			if ($out['access_token']) {
+				$_SESSION['t_access_token'] = $out['access_token'];
+				$_SESSION['t_refresh_token'] = $out['refresh_token'];
+			   	$_SESSION['t_expire_in'] = $out['expire_in'];
+			    $_SESSION['t_code'] = $code;
+			    $_SESSION['t_openid'] = $openid;
+			    $_SESSION['t_openkey'] = $openkey;
+			    //验证授权
+			    $r = OAuth::checkOAuthValid();
+			    if ($r) {
+			    	header('Location: ' . $callback);//刷新页面
+			    } else {
+			       exit('<h3>授权失败,请重试</h3>');
+			  	}
+			} else {
+				exit($r);
+			}
+		}
+	}
+
+	public function actionQqWeiboUpdate()
+	{
+
+		$array = array(
+			'user_id' => '2',
+			'user_name' => 'qqweibo',
+			'user_avatar' => 'http://tp3.sinaimg.cn/1640306342/50/1278671284/1'
+		);
+
+		$result = array(
+			'code' => 200,
+			'message' => '',
+			'data' => $array
+		);
+		echo json_encode($result);
+	}
+	
 	public function actionWeibo()
 	{
 		$weiboService=new SinaWeibo(WB_AKEY, WB_SKEY);
