@@ -38,6 +38,14 @@
 			.answer_list em {border-right: 10px solid #fff;	border-bottom: 10px solid #e5e5e5; border-left: 10px solid #fff; position: absolute; top: -10px;left: 50px;}
 			s{ position:absolute; top:-21px; left:140px; display:block; height:0; width:0; font-size: 0; line-height: 0; border-color:transparent transparent #ccc transparent; border-style:dashed dashed solid dashed; border-width:10px; }
 			i{ position:absolute; top:-9px; left:-10px; display:block; height:0; width:0;font-size: 0; line-height: 0; border-color:transparent transparent #e5e5e5 transparent; border-style:dashed dashed solid dashed; border-width:10px; }
+			.jumpToApp { height:100px; position:relative;}
+			.jumpToApp img {width:320px; }
+			.jump_app_text {position: absolute;
+			top: 13px;
+			left: 118px;
+			color: #555;
+			font-size: 12px;
+			text-decoration: none;}
 		</style>
 </head>
 <body>

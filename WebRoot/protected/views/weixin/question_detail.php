@@ -36,6 +36,10 @@
 		<?php endforeach;?>
 			</ul>
 		</div>
+		<div class="jumpToApp">
+			<img src="/images/jump_app_button.png" />
+			<a class="jump_app_text" href="qgl://AskDaddy?question_id=<?=$question_id;?>">打开Ask Daddy应用，进行回答</a>
+		</div>
 	</div>
 </body>
 </html>
