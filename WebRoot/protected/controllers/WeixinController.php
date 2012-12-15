@@ -198,15 +198,14 @@ class WeixinController extends Controller
 		$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
 		$items .= '</item>';
 		*/
-
 		foreach($question_list['list'] as $key=>$question) {
 			$items .= '<item>';
 			$items .= "<Title>" . cut_str($question['content'], 20) . "</Title>";
 			$items .= "<Description>" . cut_str($question['content'],20) . "</Description>";
 			if($key == 1) {
-				$items .= "<picUrl>http://askdaddy.trip007.cn/images/weixin_cover.png</picUrl>";
+				$items .= "<PicUrl>http://askdaddy.trip007.cn/images/weixin_cover.png</picUrl>";
 			} else {
-				$items .= "<picUrl>" . $question['user_avatar'] . "</picUrl>";
+				$items .= "<PicUrl>" . $question['user_avatar'] . "</PicUrl>";
 			}
 			$items .= "<Url>http://askdaddy.trip007.cn/weixin/question/" . $question['question_id'] . "</Url>";
 			$items .= '</item>';
@@ -214,7 +213,7 @@ class WeixinController extends Controller
 		$items .= '<item>';
 		$items .= "<Title>查看更多附近的问答</Title>";
 		$items .= "<Description></Description>";
-		$items .= "<picUrl></picUrl>";
+		$items .= "<PicUrl></PicUrl>";
 		$items .= "<Url>" . $list_url . "</Url>";
 		$items .= '</item>';
 		$items .= '</Articles>';
