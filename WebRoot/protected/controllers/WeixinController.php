@@ -65,9 +65,12 @@ class WeixinController extends Controller
 	{
 		$lat = isset($_GET['lat']) ? $_GET['lat'] : 0;
 		$lon = isset($_GET['lon']) ? $_GET['lon'] : 0;
-		$limit = isset($_GET['limit']) ? $_GET['limit'] : 5;
+		$limit = isset($_GET['limit']) ? $_GET['limit'] : 20;
 
-		$questions = $this->_get_question_list($lat, $lon, '', $limit);
+		$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+
+		$questions = $this->_get_question_list($lat, $lon, $keyword, $limit);
 		$this->_data['count'] = $questions['count'];
 
 		$this->_data['question_list'] = $questions['list'];
